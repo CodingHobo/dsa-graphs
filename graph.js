@@ -96,16 +96,49 @@ class Graph {
 
   /** find the distance of the shortest path from the start vertex to the end vertex */
   distanceOfShortestPath(start, end) {
-    let toVisitStack = [start];
-    let seen = new Set(toVisitStack);
-    let distances = new Set();
+    if (start instanceof Node === false || end instanceof Node === false) {
+    return undefined;
+  }
+  
+    let distance = 0;
 
-    while (toVisitStack.length > 0) {
-      let currNode = toVisitStack.pop()
-      let distance = 0;
+    let toVisitQueue = [[start, distance]];
+    let seen = new Set(toVisitQueue);
 
+
+    while (toVisitQueue.length > 0) {
+      let [currNode, distanceTraversed] = toVisitQueue.shift();
+      if (currNode === end) {
+      return distanceTraversed;
+  }
+      for (let neighbor of currNode.adjacent) {
+        if (!seen.has(neighbor)) {
+          toVisitQueue.push([neighbor, distanceTraversed+1]);
+          seen.add(neighbor);
+        }
+      }
     }
+    return distance;
   }
 }
+/** |.|r|i|t|h|m
+ *  |r|0|1|1|1|2
+ *  |i|1|0|1|2|3
+ *  |t|0|1|0|1|2
+ *  |h|1|2|1|0|1
+ *  |m|2|3|2|1|0
+ *
+ * adjacencyList:
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
+
 
 module.exports = { Graph, Node };
