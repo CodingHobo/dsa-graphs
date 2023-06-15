@@ -56,9 +56,11 @@ class Graph {
   depthFirstSearch(start) {
     let toVisitStack = [start];
     let seen = new Set(toVisitStack);
+    let result = [];
 
     while (toVisitStack.length > 0) {
       let currNode = toVisitStack.pop();
+      result.push(currNode.value);
 
       for (let neighbor of currNode.adjacent) {
         if (!seen.has(neighbor)) {
@@ -67,16 +69,14 @@ class Graph {
         }
       }
     }
-
-    console.log(seen)
-    return seen;
+    return result;
   }
 
   /** traverse graph with BDS and returns array of Node values */
-  breadthFirstSearch(start) { }
+  breadthFirstSearch(start) {}
 
   /** find the distance of the shortest path from the start vertex to the end vertex */
-  distanceOfShortestPath(start, end) { }
+  distanceOfShortestPath(start, end) {}
 }
 
 module.exports = { Graph, Node };

@@ -151,6 +151,25 @@ describe("DFS", function () {
     //                      \    Y    |
     //                       \     \  /
     //                         T --- W
+
+
+
+
+/**                T
+ *             R         W
+ *          Q    Y     Y    V
+ *        P    X                U
+ *      S
+ *
+ *
+ */
+
+
+
+
+
+
+
     //
 
     let graph = new Graph();
