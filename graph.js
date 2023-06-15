@@ -69,14 +69,43 @@ class Graph {
         }
       }
     }
+
     return result;
   }
 
   /** traverse graph with BDS and returns array of Node values */
-  breadthFirstSearch(start) {}
+  breadthFirstSearch(start) {
+    let toVisitQueue = [start];
+    let seen = new Set(toVisitQueue);
+    let result = [];
+
+    while (toVisitQueue.length > 0) {
+      let currNode = toVisitQueue.shift();
+      result.push(currNode.value);
+
+      for (let neighbor of currNode.adjacent) {
+        if (!seen.has(neighbor)) {
+          toVisitQueue.push(neighbor);
+          seen.add(neighbor);
+        }
+      }
+    }
+
+    return result;
+  }
 
   /** find the distance of the shortest path from the start vertex to the end vertex */
-  distanceOfShortestPath(start, end) {}
+  distanceOfShortestPath(start, end) {
+    let toVisitStack = [start];
+    let seen = new Set(toVisitStack);
+    let distances = new Set();
+
+    while (toVisitStack.length > 0) {
+      let currNode = toVisitStack.pop()
+      let distance = 0;
+
+    }
+  }
 }
 
 module.exports = { Graph, Node };
