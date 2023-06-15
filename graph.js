@@ -43,16 +43,40 @@ class Graph {
    * - remove it from nodes property of graph
    * - update any adjacency lists using that vertex
    */
-  removeVertex(vertex) {}
+  removeVertex(vertex) {
+    this.nodes.delete(vertex);
+    for (let node of this.nodes) {
+      if (node.adjacent.has(vertex)) {
+        node.adjacent.delete(vertex);
+      }
+    }
+  }
 
   /** traverse graph with DFS and returns array of Node values */
-  depthFirstSearch(start) {}
+  depthFirstSearch(start) {
+    let toVisitStack = [start];
+    let seen = new Set(toVisitStack);
+
+    while (toVisitStack.length > 0) {
+      let currNode = toVisitStack.pop();
+
+      for (let neighbor of currNode.adjacent) {
+        if (!seen.has(neighbor)) {
+          toVisitStack.push(neighbor);
+          seen.add(neighbor);
+        }
+      }
+    }
+
+    console.log(seen)
+    return seen;
+  }
 
   /** traverse graph with BDS and returns array of Node values */
-  breadthFirstSearch(start) {}
+  breadthFirstSearch(start) { }
 
   /** find the distance of the shortest path from the start vertex to the end vertex */
-  distanceOfShortestPath(start, end) {}
+  distanceOfShortestPath(start, end) { }
 }
 
 module.exports = { Graph, Node };
